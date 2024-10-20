@@ -1,0 +1,712 @@
+.main-banner-section,
+.gold-collection-banner,
+.featured-designers-section {
+  max-width: var(--site-max-width);
+  padding: 0 1rem;
+}
+
+.jewellery-selection-section,
+.journal-section {
+  max-width: var(--max-width-for-carousel-sections);
+}
+
+main {
+  margin: 2rem 0 6rem 0;
+}
+
+.background-banner-text,
+.background-banner-button > a,
+.designer:hover,
+.featured-designers-button > a {
+  color: var(--alternate-text-color);
+}
+
+.shop-now-button::after,
+.featured-designers-button {
+  background-color: var(--site-accent);
+}
+
+.main-banner-section {
+  margin: 0 auto 4rem;
+  grid-template-columns: 0.52fr 0.28fr repeat(2, 0.1fr);
+  grid-template-rows: 0.2fr 0.2fr 0.5fr 0.1fr;
+}
+
+.main-banner-title {
+  grid-row: 1/5;
+  grid-column: 1/2;
+  line-height: 0.9;
+  text-transform: uppercase;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.main-banner-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.main-banner-img:nth-child(2) {
+  grid-column: 2 / 4;
+  grid-row: 1/5;
+}
+
+.main-banner-img:last-child {
+  grid-column: 3/5;
+  grid-row: 2/4;
+  object-position: top;
+}
+
+.main-banner-title > h1 {
+  font-size: clamp(1.875rem, 1rem + 3vw, 3.5rem);
+  font-weight: 500;
+  position: relative;
+  top: 1.5rem;
+  max-width: 91%;
+  margin: 0 auto;
+}
+
+.main-banner-title > h1 > .brand-preamble,
+.article > .article-length > p,
+.featured-designers-title > p,
+.featured-designers-button p {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.main-banner-title > h1 > .brand-preamble {
+  line-height: normal;
+  font-size: 0.9rem;
+  position: absolute;
+  top: -2rem;
+  left: 0;
+  font-weight: 600;
+}
+
+.main-banner-title > h1 > .asteric {
+  position: absolute;
+  font-size: 2.5rem;
+  top: 0;
+  left: -1.5rem;
+}
+
+.main-banner-title > h1 > i {
+  text-transform: lowercase;
+}
+
+.shop-now-button {
+  font-size: clamp(1.15rem, 1rem + 0.5vw, 1.5rem);
+  text-transform: uppercase;
+}
+
+.shop-now-button,
+.background-banner-button > a {
+  position: relative;
+  font-style: italic;
+}
+
+.shop-now-button::after {
+  content: "";
+  position: absolute;
+  bottom: -0.3rem;
+  left: 0;
+  width: 0;
+  height: 2px;
+  transition: 0.5s;
+}
+
+.shop-now-button:hover::after {
+  width: 100%;
+}
+
+.shop-now-button > span {
+  position: relative;
+  top: 0;
+  left: 0;
+  transition: 0.2s;
+}
+
+.shop-now-button:hover span {
+  left: 0.5rem;
+}
+
+.jewellery-selection-section,
+.journal-section {
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto 4rem;
+}
+
+.jewellery-selection-title,
+.journal-section-title {
+  max-width: 40%;
+  text-align: center;
+  margin: 3.2rem auto;
+}
+
+.gold-collection-banner-flex .collection-banner-title > h2,
+.jewellery-selection-title > h2,
+.journal-section-title > h2 {
+  font-size: clamp(1.5rem, 1rem + 2.3vw, 3rem);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.products-showcase,
+.articles-showcase {
+  overflow: hidden;
+}
+
+.products-showcase > .vertical-text,
+.articles-showcase > .vertical-text {
+  z-index: 1;
+  padding: 3rem;
+  background: var(--site-background);
+}
+
+.products-showcase > .vertical-text p,
+.articles-showcase > .vertical-text p {
+  font-size: clamp(0.6rem, 0.8rem + 0.2vw, 1rem);
+  transform: rotate(-90deg);
+  text-transform: capitalize;
+  word-spacing: 2.5px;
+}
+
+.products-showcase .vertical-text p > span {
+  font-style: italic;
+}
+
+.products-showcase .products-carousel,
+.articles-showcase .articles-carousel {
+  flex-direction: column;
+  white-space: nowrap;
+}
+
+.products-showcase .products-carousel {
+  min-width: clamp(1500px, 80vw + 1000px, 2000px);
+}
+
+.products-carousel > .products {
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.products-carousel > .products,
+.articles-carousel > .articles {
+  transition: 0.5s;
+}
+
+.products > .product,
+.articles > .article {
+  margin: 0 0.5rem;
+}
+
+.products > .browse-more-products {
+  height: 320px;
+}
+
+.products > .browse-more-products,
+.articles > .browse-more-articles {
+  transform: translateY(23px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.more-products-btn,
+.more-articles-btn {
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--site-accent);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  transition: 0.3s;
+}
+
+.more-products-btn > span,
+.more-articles-btn > span {
+  display: block;
+  font-size: 50px;
+  transform: translateY(-3.5px);
+}
+
+.products > .browse-more-products:hover .more-products-btn,
+.articles > .browse-more-articles:hover .more-articles-btn {
+  transform: scale(1.1);
+}
+
+.product > span,
+.article > span {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.product > .product-img,
+.article > .article-img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.product > .product-img {
+  object-position: center 10%;
+  height: 320px;
+}
+
+.product > .product-title,
+.product > .product-price,
+.image-title-price-container {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.product > .product-title > p,
+.product > span,
+.article > span {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.product > .product-title > p > i,
+.image-title > p > i {
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.product > .product-price {
+  padding-top: 0.5rem;
+}
+
+.products-carousel > .navigation,
+.articles-carousel > .navigation {
+  margin: 1rem 0.5rem;
+}
+
+.navigation {
+  align-items: center;
+  gap: 1rem;
+}
+
+.navigation > .right,
+.navigation > .left {
+  cursor: none;
+  background: none;
+  border: 1.5px solid var(--site-accent);
+  border-radius: 50%;
+  padding: 0.5rem;
+}
+
+.navigation > .right > span,
+.navigation > .left > span {
+  height: 24px;
+  width: 24px;
+  font-size: 24px;
+  transform: translateY(-9px);
+}
+
+.gold-collection-banner {
+  align-items: center;
+  margin: 0 auto 10rem;
+}
+
+.gold-collection-banner-flex {
+  justify-content: center;
+  flex-direction: column;
+  max-height: 1050px;
+}
+
+.gold-collection-banner-flex .collection-banner-title {
+  margin: 6em 0;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 40%;
+}
+
+.gold-collection-images {
+  min-height: 550px;
+  grid-template-columns: 0.3fr 0.4fr 0.3fr;
+  grid-template-rows: repeat(2, 0.1fr) 0.3fr repeat(2, 0.1fr) 0.3fr;
+  column-gap: clamp(1rem, 2vw + 0.75rem, 3rem);
+  transition: 0.5s;
+}
+
+/* .gold-collection-images .collection-banner-img {
+  width: 100%;
+} */
+
+/* .gold-collection-images .collection-banner-img {
+  margin-right: clamp(1rem, 2vw + 0.75rem, 3rem);
+} */
+
+.gold-collection-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gold-collection-images .collection-banner-img-2 img {
+  height: 85%;
+}
+
+.gold-collection-images .collection-banner-img-1 {
+  /* margin-right: clamp(0.5rem, calc((2vw + 0.75rem) / 2), 1.5rem); */
+  grid-column: 1 / 2;
+  grid-row: 2 / 5;
+}
+
+.gold-collection-images .collection-banner-img-2 {
+  /* margin: 0 clamp(0.5rem, calc((2vw + 0.75rem) / 2), 1.5rem); */
+  grid-column: 2 / 3;
+  grid-row: 1 / 7;
+}
+
+.gold-collection-images .collection-banner-img-3 {
+  /* margin-left: clamp(0.5rem, calc((2vw + 0.75rem) / 2), 1.5rem); */
+  grid-column: 3 / 4;
+  grid-row: 3 / 6;
+}
+
+.gold-collection-images
+  .collection-banner-img-2
+  > .image-title-price-container {
+  max-width: 250px;
+  height: 15%;
+  min-height: 70px;
+}
+
+.gold-collection-images .image-price {
+  padding-top: 0.5rem;
+}
+
+.silver-collection-banner {
+  background: url(images/silver-chain-1.jpg);
+  background-size: cover;
+  align-items: center;
+  min-height: 120vh;
+  margin: 0 auto 4rem;
+  padding: 2rem;
+}
+
+.background-banner-text {
+  align-items: center;
+  justify-content: center;
+}
+
+.background-banner-text {
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 60%;
+}
+
+.background-banner-title > h2 {
+  font-weight: 500;
+  font-size: clamp(2.5rem, 1rem + 4.75vw, 5rem);
+}
+
+.background-banner-button > a {
+  font-size: clamp(1.5rem, 1rem + 1.75vw, 2.5rem);
+}
+
+.background-banner-button > a::after {
+  content: "";
+  background-color: var(--alternate-text-color);
+  position: absolute;
+  bottom: -0.8rem;
+  left: 0;
+  width: 0;
+  height: 2px;
+  transition: 0.5s;
+}
+
+.background-banner-button > a:hover::after {
+  width: 100%;
+}
+
+.background-banner-button > a > span {
+  position: relative;
+  top: 0;
+  left: 0.8rem;
+  transition: 0.2s;
+}
+
+.background-banner-button > a:hover span {
+  left: 1.2rem;
+}
+
+.articles-carousel {
+  min-width: clamp(2300px, 45vw + 2000px, 2600px);
+}
+
+.articles {
+  grid-template-columns: repeat(7, 1fr) 260px;
+}
+
+.articles .article {
+  height: fit-content;
+}
+
+.articles > .article:nth-child(odd) > .article-img {
+  height: 400px;
+}
+
+.articles > .article:nth-child(even) > .article-img {
+  height: 220px;
+}
+
+.articles > .article > span {
+  display: block;
+}
+
+.article > .article-title {
+  padding: 0.5rem 0 0.7rem;
+  text-transform: uppercase;
+}
+
+.article > .article-length > p {
+  font-weight: 600;
+  margin-bottom: -0.3rem;
+  font-size: 0.9rem;
+}
+
+.article > .article-date > p {
+  font-size: 0.9rem;
+}
+
+.articles-showcase > .vertical-text p {
+  width: 80px;
+}
+
+.articles > .browse-more-articles {
+  height: 400px;
+}
+
+.featured-designers-section {
+  min-height: 100vh;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.featured-designers {
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+  height: 100%;
+}
+
+.featured-designers-title > p,
+.featured-designers-button p {
+  font-weight: 500;
+}
+
+.designers-wrapper {
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+}
+
+.designer {
+  position: relative;
+  text-align: center;
+  width: fit-content;
+}
+
+.designer > p {
+  z-index: -1;
+  font-size: clamp(1.5rem, 1rem + 3.75vw, 4rem);
+  position: relative;
+  transition: 0.3s;
+}
+
+.designer > .designer-image {
+  width: 200px;
+  object-fit: cover;
+  position: absolute;
+  transform-origin: center;
+  pointer-events: none;
+  transition: transform 0.3s;
+  filter: grayscale(80%);
+}
+
+.designer > .designer-image[data-status="inactive"] {
+  transform: scale(0) translate(-50%, -60%);
+}
+
+.designer > .designer-image[data-status="active"] {
+  z-index: 0;
+  transform: scale(1) translate(-50%, -60%);
+}
+
+.featured-designers-button > a {
+  text-transform: uppercase;
+  display: block;
+  padding: 0.8rem 2.5rem;
+}
+
+.featured-designers-button p {
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+}
+
+@media only screen and (max-width: 1230px) {
+  .main-banner-section,
+  .gold-collection-banner,
+  .featured-designers-section {
+    padding: 0 2rem;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .main-banner-title {
+    justify-content: space-around;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .main-banner-section {
+    grid-template-columns: 0.5fr 0.3fr 0.2fr;
+    grid-template-rows: 0.125fr repeat(2, 0.375fr) 0.125fr auto;
+  }
+
+  .main-banner-img:nth-child(2) {
+    grid-column: 1 / 3;
+    grid-row: 1 / 5;
+  }
+
+  .main-banner-img:last-child {
+    grid-column: 2 / 4;
+    grid-row: 2 / 4;
+  }
+
+  .main-banner-title {
+    justify-content: unset;
+    gap: 3.5rem;
+    padding: 2rem 0;
+    grid-column: 1 / 6;
+    grid-row: 5 / 6;
+  }
+
+  .jewellery-selection-title,
+  .journal-section-title {
+    max-width: 50%;
+  }
+
+  .gold-collection-banner-flex .collection-banner-title {
+    max-width: 25%;
+  }
+
+  .gold-collection-banner {
+    justify-content: center;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .gold-collection-images {
+    grid-template-columns: repeat(3, 70vw);
+    /* grid-template-columns: unset; */
+  }
+
+  /* .gold-collection-images .collection-banner-img {
+    width: 70vw;
+  } */
+
+  .silver-collection-banner {
+    min-height: 100vh;
+  }
+
+  .background-banner-text {
+    max-width: unset;
+  }
+
+  .products-showcase,
+  .articles-showcase {
+    flex-direction: column-reverse;
+    gap: 2.5rem;
+  }
+
+  .products-showcase > .vertical-text,
+  .articles-showcase > .vertical-text {
+    padding: 0;
+  }
+
+  .products-showcase > .vertical-text a,
+  .articles-showcase > .vertical-text a {
+    color: var(--alternate-text-color);
+    background: var(--site-accent);
+    padding: 0.8rem 2.5rem;
+  }
+
+  .products-showcase > .vertical-text p,
+  .articles-showcase > .vertical-text p {
+    transform: rotate(0deg);
+    width: unset;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .main-banner-section {
+    min-height: 350px;
+    grid-template-rows: 0.1fr repeat(2, 0.4fr) 0.1fr;
+  }
+
+  .main-banner-img:nth-child(2) {
+    grid-row: 1 / 5;
+  }
+
+  .main-banner-img:last-child {
+    grid-row: 2 / 4;
+  }
+
+  .main-banner-title {
+    justify-content: center;
+    padding: 1rem 0;
+    grid-row: 1 / 5;
+  }
+
+  .main-banner-title,
+  .shop-now-button {
+    color: var(--alternate-text-color);
+  }
+
+  .shop-now-button::after {
+    background-color: var(--alternate-text-color);
+  }
+
+  .gold-collection-images {
+    grid-template-columns: repeat(3, 80vw);
+  }
+
+  /* .gold-collection-images .collection-banner-img {
+    width: 80vw;
+  } */
+
+  .silver-collection-banner {
+    background-position: center;
+  }
+
+  .enter-email input,
+  .enter-email button[type="submit"] {
+    flex-grow: 1;
+    padding: 1rem 0.5rem;
+  }
+
+  .bottom-content {
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 2rem;
+  }
+
+  .address-and-email,
+  .site-copyright-label {
+    text-align: center;
+  }
+}
