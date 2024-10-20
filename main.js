@@ -13,34 +13,20 @@ const customCursorMovement = (e) => {
 window.addEventListener("mousemove", customCursorMovement);
 
 function setNavHeightCSSVariable(navHeight, styleSheet) {
-  for (
-    styleRuleIndex = 0;
-    styleRuleIndex < styleSheet.cssRules.length;
-    styleRuleIndex++
-  ) {
-    if (styleSheet.cssRules[styleRuleIndex].selectorText === ":root") {
-      styleSheet.cssRules[styleRuleIndex].style.setProperty(
-        "--nav-height",
-        `${navHeight}px`
-      );
-      if (!navHeight) {
-        setNavHeightCSSVariable(
-          document.querySelector("nav").getBoundingClientRect().height,
-          styleSheet
-        );
-        console.log("setNavHeightCSSVariable called again!", navHeight);
-      }
+  for (const cssRule of styleSheet.cssRules) {
+    if (cssRule.selectorText === ":root") {
+      cssRule.style.setProperty("--nav-height", `${navHeight}px`);
       break;
     }
   }
 }
 
 function findSharedStyleSheet(styleSheets) {
-  for (let index = 0; index < styleSheets.length; index++) {
-    if (styleSheets[index].href.endsWith("shared.css")) {
+  for (const styleSheet of styleSheets) {
+    if (styleSheet.href.endsWith("shared.css")) {
       setNavHeightCSSVariable(
         document.querySelector("nav").getBoundingClientRect().height,
-        styleSheets[index]
+        styleSheet
       );
       break;
     }
@@ -134,7 +120,7 @@ function setupCustomCursorHoverEffect() {
     );
   newsletterSignUpButton = document.querySelector("form > button");
 
-  navBarButtons.forEach((button) => {
+  for (const button of navBarButtons) {
     button.addEventListener("mouseover", () => {
       customCursor.classList.add("cursor-grows");
     });
@@ -142,9 +128,9 @@ function setupCustomCursorHoverEffect() {
     button.addEventListener("mouseleave", () => {
       customCursor.classList.remove("cursor-grows");
     });
-  });
+  }
 
-  Array.from(links).forEach((link) => {
+  for (const link of Array.from(links)) {
     link.addEventListener("mouseover", () => {
       customCursor.classList.add("cursor-grows");
     });
@@ -152,9 +138,9 @@ function setupCustomCursorHoverEffect() {
     link.addEventListener("mouseleave", () => {
       customCursor.classList.remove("cursor-grows");
     });
-  });
+  }
 
-  carouselNavigationButtons.forEach((button) => {
+  for (const button of carouselNavigationButtons) {
     button.addEventListener("mouseover", () => {
       customCursor.classList.add("cursor-grows");
     });
@@ -162,7 +148,7 @@ function setupCustomCursorHoverEffect() {
     button.addEventListener("mouseleave", () => {
       customCursor.classList.remove("cursor-grows");
     });
-  });
+  }
 
   newsletterSignUpButton.addEventListener("mouseover", () => {
     customCursor.classList.add("cursor-grows");
