@@ -29,6 +29,10 @@
   justify-content: center;
 }
 
+.grid-center {
+  place-content: center;
+}
+
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 40;
 }
@@ -162,7 +166,6 @@ hr.slide-out {
 }
 
 .offcanvas-menu-list {
-  /* background: red; */
   width: 100%;
   min-height: calc(100vh - var(--nav-height));
   position: fixed;
@@ -246,9 +249,19 @@ a {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-footer {
-  position: relative;
-  margin-top: 3rem;
+main {
+  margin: 2rem 0 6rem 0;
+}
+
+h1 {
+  font-size: clamp(1.875rem, 1rem + 3vw, 3.5rem);
+  font-weight: 500;
+}
+
+.products-showcase > .vertical-text p,
+.articles-showcase > .vertical-text p,
+.categories {
+  font-size: clamp(0.6rem, 0.8rem + 0.2vw, 1rem);
 }
 
 .footer-container {
@@ -333,7 +346,6 @@ footer {
 button[type="submit"] > span {
   position: relative;
   bottom: 2px;
-  transform: translateY(60px);
 }
 
 .enter-email-caption {

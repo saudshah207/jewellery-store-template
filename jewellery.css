@@ -1,0 +1,34 @@
+main {
+    margin-top: 5rem;
+}
+
+.main-banner-section {
+  max-width: var(--site-max-width);
+  margin: 0 auto;
+}
+
+.title-and-categories {
+  flex: 0 1 80%;
+  text-align: center;
+}
+
+.categories {
+  margin-top: 2rem;
+  list-style: none;
+  text-transform: uppercase;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .categories {
+        gap: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .categories {
+        gap: 1rem;
+    }
+}
