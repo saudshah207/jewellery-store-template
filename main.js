@@ -14,8 +14,29 @@ window.addEventListener("mousemove", customCursorMovement);
 
 function setNavHeightCSSVariable(navHeight, styleSheet) {
   for (const cssRule of styleSheet.cssRules) {
+    let ruleText = cssRule.cssText;
+
     if (cssRule.selectorText === ":root") {
       cssRule.style.setProperty("--nav-height", `${navHeight}px`);
+
+      let navHeightVarValue = ruleText
+        .slice(
+          ruleText.indexOf(" ", ruleText.indexOf("--nav-height")),
+          ruleText.indexOf(";", ruleText.indexOf("--nav-height"))
+        )
+        .trim();
+
+      console.log(navHeightVarValue);
+
+      if (navHeightVarValue === "") {
+        console.log("setNavHeightCSSVariable() called again!");
+
+        setNavHeightCSSVariable(
+          document.querySelector("nav").getBoundingClientRect().height,
+          styleSheet
+        );
+      }
+
       break;
     }
   }
@@ -117,8 +138,8 @@ function setupCustomCursorHoverEffect() {
     links = document.getElementsByTagName("a"),
     carouselNavigationButtons = document.querySelectorAll(
       ".carousel > .navigation > button"
-    );
-  newsletterSignUpButton = document.querySelector("form > button");
+    ),
+    newsletterSignUpButton = document.querySelector("form > button");
 
   for (const button of navBarButtons) {
     button.addEventListener("mouseover", () => {
