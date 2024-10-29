@@ -17,7 +17,7 @@
       <nav class="flex">
         <a href="index.html" class="logo">Brand.</a>
         <ul class="offcanvas-menu-list flex flex-center">
-          <li><a href="#">Jewellery</a></li>
+          <li><a href="jewellery.html">Jewellery</a></li>
           <li><a href="#">Designers</a></li>
           <li><a href="#">Journal</a></li>
           <li><a href="#">About</a></li>
@@ -39,6 +39,7 @@
       </nav>
     </header>
     <hr />
+    <div class="overlay fade-out-transition"></div>
     <main>
       <section class="main-banner-section flex flex-center">
         <div class="title-and-categories">
@@ -60,6 +61,604 @@
               <a href="#"> Anklets </a>
             </li>
           </ul>
+        </div>
+      </section>
+      <section class="jewellery-products-section grid">
+        <div class="sorting flex">
+          <label>
+            <span>Sort By :</span>
+            <select name="sorting">
+              <option value="recommeded">Recommended</option>
+              <option value="price-low-to-high">Price Low To High</option>
+              <option value="price-high-to-low">Price High To Low</option>
+              <option value="newest">Newest</option>
+            </select>
+          </label>
+        </div>
+        <div class="filters-and-product-count">
+          <div class="filters-toggle-product-count-wrapper flex">
+            <button class="filters-toggle">
+              <span class="icon inline-block"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="20px"
+                  viewBox="0 -1160 960 960"
+                  width="20px"
+                  fill="#ffffff"
+                >
+                  <path
+                    d="M400-240v-80h160v80H400ZM240-440v-80h480v80H240ZM120-640v-80h720v80H120Z"
+                  /></svg></span
+              >Filter
+            </button>
+            <p class="products-count">112 products</p>
+          </div>
+          <div class="filters">
+            <button class="close-button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="18px"
+                viewBox="0 -960 960 960"
+                width="18px"
+                fill="#000000"
+              >
+                <path
+                  d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+                />
+              </svg>
+            </button>
+            <div class="filter-dropdown">
+              <button class="flex">
+                <span>Designers</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14px"
+                  viewBox="0 -1060 960 960"
+                  width="14px"
+                  fill="#000000"
+                >
+                  <path
+                    d="M480-357.85 253.85-584 296-626.15l184 184 184-184L706.15-584 480-357.85Z"
+                  />
+                </svg>
+              </button>
+              <ul class="options closing-transition">
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="alighieri"
+                    /><span>Alighieri</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="orit-elhanati"
+                    /><span>Orit Elhanati</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="AGMES"
+                    /><span>AGMES</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="WWAKE"
+                    /><span>WWAKE</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="kahil"
+                    /><span>Kahil</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="charlotte chesnaise"
+                    /><span>Charlotte Chesnaise</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="IDMARA"
+                    /><span>IDMARA</span></label
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="filter-dropdown">
+              <button class="flex">
+                <span>Metals</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14px"
+                  viewBox="0 -1060 960 960"
+                  width="14px"
+                  fill="#000000"
+                >
+                  <path
+                    d="M480-357.85 253.85-584 296-626.15l184 184 184-184L706.15-584 480-357.85Z"
+                  />
+                </svg>
+              </button>
+              <ul class="options closing-transition">
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="rose-gold"
+                    /><span>Rose Gold</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="sterling-silver"
+                    /><span>Sterling Silver</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="yellow-gold"
+                    /><span>Yellow Gold</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="white-gold"
+                    /><span>White Gold</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="platinum"
+                    /><span>Platinum</span></label
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="filter-dropdown">
+              <button class="flex">
+                <span>Karat</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14px"
+                  viewBox="0 -1060 960 960"
+                  width="14px"
+                  fill="#000000"
+                >
+                  <path
+                    d="M480-357.85 253.85-584 296-626.15l184 184 184-184L706.15-584 480-357.85Z"
+                  />
+                </svg>
+              </button>
+              <ul class="options closing-transition">
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="9kt-solid"
+                    /><span>9kt-Solid</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="14kt-solid"
+                    /><span>14kt-Solid</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="18kt-solid"
+                    /><span>18kt-Solid</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="18kt-plated"
+                    /><span>18kt-Plated</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="22kt-solid"
+                    /><span>22kt-Solid</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="24kt-plated"
+                    /><span>24kt-Plated</span></label
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="filter-dropdown">
+              <button class="flex">
+                <span>Gemstones</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14px"
+                  viewBox="0 -1060 960 960"
+                  width="14px"
+                  fill="#000000"
+                >
+                  <path
+                    d="M480-357.85 253.85-584 296-626.15l184 184 184-184L706.15-584 480-357.85Z"
+                  />
+                </svg>
+              </button>
+              <ul class="options closing-transition">
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="diamond"
+                    /><span>Diamond</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="emerald"
+                    /><span>Emerald</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="pearl"
+                    /><span>Pearl</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="ruby"
+                    /><span>Ruby</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="sapphire"
+                    /><span>Sapphire</span></label
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="filter-dropdown">
+              <button class="flex">
+                <span>Shipping Time</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14px"
+                  viewBox="0 -1060 960 960"
+                  width="14px"
+                  fill="#000000"
+                >
+                  <path
+                    d="M480-357.85 253.85-584 296-626.15l184 184 184-184L706.15-584 480-357.85Z"
+                  />
+                </svg>
+              </button>
+              <ul class="options closing-transition">
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="immediately"
+                    /><span>Immediately</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="1-week"
+                    /><span>1 week</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="1-2-weeks"
+                    /><span>1-2 weeks</span></label
+                  >
+                </li>
+                <li>
+                  <label class="flex"
+                    ><input
+                      class="inline-block"
+                      type="checkbox"
+                      name="2+-weeks"
+                    /><span>2+ weeks</span></label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="products-grid grid">
+          <a href="#" class="product">
+            <div class="image-wrapper">
+              <img src="images/earring.jpg" alt="" /><span
+                class="add-to-wishlist flex"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="22px"
+                  viewBox="0 -960 960 960"
+                  width="22px"
+                  fill="#000000"
+                >
+                  <path
+                    d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"
+                  />
+                </svg>
+              </span>
+            </div>
+            <p class="title">
+              Pearls Strands Earrings <br />
+              <i>by Alighieri</i>
+            </p>
+            <p class="price">$ 100.00</p>
+          </a>
+          <a href="#" class="product">
+            <div class="image-wrapper">
+              <img src="images/earring.jpg" alt="" /><span
+                class="add-to-wishlist flex"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="22px"
+                  viewBox="0 -960 960 960"
+                  width="22px"
+                  fill="#000000"
+                >
+                  <path
+                    d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"
+                  />
+                </svg>
+              </span>
+            </div>
+            <p class="title">
+              Pearls Strands Earrings <br />
+              <i>by Alighieri</i>
+            </p>
+            <p class="price">$ 100.00</p>
+          </a>
+          <a href="#" class="product">
+            <div class="image-wrapper">
+              <img src="images/earring.jpg" alt="" /><span
+                class="add-to-wishlist flex"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="22px"
+                  viewBox="0 -960 960 960"
+                  width="22px"
+                  fill="#000000"
+                >
+                  <path
+                    d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"
+                  />
+                </svg>
+              </span>
+            </div>
+            <p class="title">
+              Pearls Strands Earrings <br />
+              <i>by Alighieri</i>
+            </p>
+            <p class="price">$ 100.00</p>
+          </a>
+          <a href="#" class="product">
+            <div class="image-wrapper">
+              <img src="images/earring.jpg" alt="" /><span
+                class="add-to-wishlist flex"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="22px"
+                  viewBox="0 -960 960 960"
+                  width="22px"
+                  fill="#000000"
+                >
+                  <path
+                    d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"
+                  />
+                </svg>
+              </span>
+            </div>
+            <p class="title">
+              Pearls Strands Earrings <br />
+              <i>by Alighieri</i>
+            </p>
+            <p class="price">$ 100.00</p>
+          </a>
+          <a href="#" class="product">
+            <div class="image-wrapper">
+              <img src="images/earring.jpg" alt="" /><span
+                class="add-to-wishlist flex"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="22px"
+                  viewBox="0 -960 960 960"
+                  width="22px"
+                  fill="#000000"
+                >
+                  <path
+                    d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"
+                  />
+                </svg>
+              </span>
+            </div>
+            <p class="title">
+              Pearls Strands Earrings <br />
+              <i>by Alighieri</i>
+            </p>
+            <p class="price">$ 100.00</p>
+          </a>
+          <a href="#" class="product">
+            <div class="image-wrapper">
+              <img src="images/earring.jpg" alt="" /><span
+                class="add-to-wishlist flex"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="22px"
+                  viewBox="0 -960 960 960"
+                  width="22px"
+                  fill="#000000"
+                >
+                  <path
+                    d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"
+                  />
+                </svg>
+              </span>
+            </div>
+            <p class="title">
+              Pearls Strands Earrings <br />
+              <i>by Alighieri</i>
+            </p>
+            <p class="price">$ 100.00</p>
+          </a>
+          <a href="#" class="product">
+            <div class="image-wrapper">
+              <img src="images/earring.jpg" alt="" /><span
+                class="add-to-wishlist flex"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="22px"
+                  viewBox="0 -960 960 960"
+                  width="22px"
+                  fill="#000000"
+                >
+                  <path
+                    d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"
+                  />
+                </svg>
+              </span>
+            </div>
+            <p class="title">
+              Pearls Strands Earrings <br />
+              <i>by Alighieri</i>
+            </p>
+            <p class="price">$ 100.00</p>
+          </a>
+          <a href="#" class="product">
+            <div class="image-wrapper">
+              <img src="images/earring.jpg" alt="" /><span
+                class="add-to-wishlist flex"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="22px"
+                  viewBox="0 -960 960 960"
+                  width="22px"
+                  fill="#000000"
+                >
+                  <path
+                    d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"
+                  />
+                </svg>
+              </span>
+            </div>
+            <p class="title">
+              Pearls Strands Earrings <br />
+              <i>by Alighieri</i>
+            </p>
+            <p class="price">$ 100.00</p>
+          </a>
+          <a href="#" class="product">
+            <div class="image-wrapper">
+              <img src="images/earring.jpg" alt="" /><span
+                class="add-to-wishlist flex"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="22px"
+                  viewBox="0 -960 960 960"
+                  width="22px"
+                  fill="#000000"
+                >
+                  <path
+                    d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"
+                  />
+                </svg>
+              </span>
+            </div>
+            <p class="title">
+              Pearls Strands Earrings <br />
+              <i>by Alighieri</i>
+            </p>
+            <p class="price">$ 100.00</p>
+          </a>
         </div>
       </section>
     </main>
@@ -170,5 +769,6 @@
       </div>
     </footer>
     <script src="main.js"></script>
+    <script src="jewellery.js"></script>
   </body>
 </html>

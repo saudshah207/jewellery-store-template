@@ -22,8 +22,14 @@
   background-color: var(--site-accent);
 }
 
-.main-banner-section {
+.main-banner-section,
+.jewellery-selection-section,
+.journal-section,
+.silver-collection-banner {
   margin: 0 auto 4rem;
+} 
+
+.main-banner-section {
   grid-template-columns: 0.52fr 0.28fr repeat(2, 0.1fr);
   grid-template-rows: 0.2fr 0.2fr 0.5fr 0.1fr;
 }
@@ -66,7 +72,9 @@
 .main-banner-title > h1 > .brand-preamble,
 .article > .article-length > p,
 .featured-designers-title > p,
-.featured-designers-button p {
+.featured-designers-button p,
+.product > span,
+.article > span  {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
@@ -132,7 +140,6 @@
   min-height: 100vh;
   flex-direction: column;
   justify-content: center;
-  margin: 0 auto 4rem;
 }
 
 .jewellery-selection-title,
@@ -239,42 +246,12 @@
   margin-bottom: 0.2rem;
   font-size: 0.88rem;
   font-weight: 600;
-}
-
-.product > .product-img,
-.article > .article-img {
-  width: 100%;
-  object-fit: cover;
+  letter-spacing: 0.5px;
 }
 
 .product > .product-img {
   object-position: center 10%;
   height: 320px;
-}
-
-.product > .product-title,
-.product > .product-price,
-.image-title-price-container {
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.product > .product-title > p,
-.product > span,
-.article > span {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  letter-spacing: 0.5px;
-}
-
-.product > .product-title > p > i,
-.image-title > p > i {
-  font-weight: 400;
-  letter-spacing: 0;
-}
-
-.product > .product-price {
-  padding-top: 0.5rem;
 }
 
 .products-carousel > .navigation,
@@ -374,7 +351,6 @@
   background-size: cover;
   align-items: center;
   min-height: 120vh;
-  margin: 0 auto 4rem;
   padding: 2rem;
 }
 
