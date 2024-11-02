@@ -3,8 +3,8 @@ function closeAlreadyExpandedOptions(optionsToExpand) {
 
   let currentFilterOptions;
 
-  for (let index = 0; index < filters.children.length; index++) {
-    currentFilterOptions = filters.children[index].querySelector(".options");
+  for (const filtersChild of filters.children) {
+    currentFilterOptions = filtersChild.querySelector(".options");
 
     if (!currentFilterOptions) {
       continue;
@@ -80,28 +80,119 @@ function showFilters(filters, overlay) {
   toggleTransitionClass(overlay, "fade-in");
 }
 
-function setupFiltersToggling(
-  filtersToggle,
-  filters,
-  filtersCloseBtn,
-  overlay
-) {
+function setupFiltersToggling(filtersToggle, filtersCloseBtn, overlay) {
   filtersToggle.addEventListener("click", function () {
-    showFilters(filters, overlay);
+    showFilters(document.querySelector(".filters"), overlay);
   });
 
   filtersCloseBtn.addEventListener("click", function () {
-    hideFilters(filters, overlay);
+    hideFilters(document.querySelector(".filters"), overlay);
   });
 
   overlay.addEventListener("click", function () {
-    hideFilters(filters, overlay);
+    hideFilters(document.querySelector(".filters"), overlay);
   });
 }
 
 setupFiltersToggling(
   document.querySelector(".filters-toggle"),
-  document.querySelector(".filters"),
   document.querySelector(".filters > .close-button"),
   document.querySelector(".overlay")
 );
+
+function growCursor(cursor) {
+  cursor.classList.add("cursor-grows");
+}
+
+function normalizeCursor(cursor) {
+  if (Array.from(cursor.classList).includes("cursor-grows")) {
+    cursor.classList.remove("cursor-grows");
+  } else {
+    cursor.classList.remove("cursor-shrinks");
+  }
+}
+
+function shrinkCursor(cursor) {
+  cursor.classList.add("cursor-shrinks");
+}
+
+function setupCustomCursorHoverEffect(customCursor) {
+  const sortingSelect = document.querySelector(".sorting select"),
+    filtersToggle = document.querySelector(".filters-toggle"),
+    filtersCloseBtn = document.querySelector(".filters > .close-button"),
+    filterExpanderBtns = document.querySelectorAll(".filter-dropdown > button"),
+    filterOptions = document.querySelectorAll(".options label"),
+    products = document.querySelectorAll(".product"),
+    productAddToWishlistIcons = document.querySelectorAll(
+      ".product .add-to-wishlist"
+    );
+
+  for (const each of [sortingSelect, filtersToggle, filtersCloseBtn]) {
+    if (each === filtersCloseBtn) {
+      each.addEventListener("mouseover", () => {
+        shrinkCursor(customCursor);
+      });
+    } else {
+      each.addEventListener("mouseover", () => {
+        growCursor(customCursor);
+      });
+    }
+
+    each.addEventListener("mouseleave", () => {
+      normalizeCursor(customCursor);
+    });
+  }
+
+  for (const expanderBtn of filterExpanderBtns) {
+    expanderBtn.addEventListener("mouseover", () => {
+      shrinkCursor(customCursor);
+    });
+
+    expanderBtn.addEventListener("mouseleave", () => {
+      normalizeCursor(customCursor);
+    });
+  }
+
+  for (const option of filterOptions) {
+    option.addEventListener("mouseover", () => {
+      shrinkCursor(customCursor);
+    });
+
+    option.addEventListener("mouseleave", () => {
+      normalizeCursor(customCursor);
+    });
+  }
+
+  for (const product of products) {
+    product.addEventListener("mouseover", () => {
+      growCursor(customCursor);
+    });
+
+    product.addEventListener("mouseleave", () => {
+      normalizeCursor(customCursor);
+    });
+  }
+
+  for (const addToWishlistIcon of productAddToWishlistIcons) {
+    addToWishlistIcon.addEventListener("mouseover", (e) => {
+      e.stopPropagation(); /* Avoid bubbling up of event to product 
+                              which calls growCursor */
+
+      normalizeCursor(
+        customCursor
+      ); /* because product normalizeCursor isn't called 
+            while "mouseover" takes place for addToWishlistIcon
+            since "mouseleave" hasn't taken place on product 
+            (addToWishlistIcon is child of product, "mouseover"
+            on product is still taking place) */
+
+      shrinkCursor(customCursor);
+    });
+
+    addToWishlistIcon.addEventListener("mouseleave", () => {
+      normalizeCursor(customCursor);
+    });
+  }
+}
+
+setupCustomCursorHoverEffect(document.querySelector(".custom-cursor"));

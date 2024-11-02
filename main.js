@@ -1,13 +1,14 @@
 const customCursorMovement = (e) => {
   const customCursor = document.querySelector(".custom-cursor");
+  const halfOfCursorWidth = 33.5 / 2;
 
   /* Getting coordinates for movement of the custom cursor */
   let moveX = e.clientX;
   let moveY = e.clientY;
 
   /* cursor moves by inputing coordinates with fixed positioning */
-  customCursor.style.left = `${moveX}px`;
-  customCursor.style.top = `${moveY + document.body.scrollTop}px`;
+  customCursor.style.left = `${moveX - halfOfCursorWidth}px`;
+  customCursor.style.top = `${moveY + document.body.scrollTop - halfOfCursorWidth}px`;
 };
 
 window.addEventListener("mousemove", customCursorMovement);
@@ -132,52 +133,50 @@ function slideOffCanvasMenuInAndOut(menu) {
   menu.classList.toggle("slides-in");
 }
 
-function setupCustomCursorHoverEffect() {
-  const customCursor = document.querySelector(".custom-cursor"),
-    navBarButtons = document.querySelectorAll(".navbar-buttons > div"),
-    links = document.getElementsByTagName("a"),
-    carouselNavigationButtons = document.querySelectorAll(
-      ".carousel > .navigation > button"
-    ),
+function growCursor(cursor) {
+  cursor.classList.add("cursor-grows");
+}
+
+function normalizeCursor(cursor) {
+  if (Array.from(cursor.classList).includes("cursor-grows")) {
+    cursor.classList.remove("cursor-grows");
+  } else {
+    cursor.classList.remove("cursor-shrinks");
+  }
+}
+
+function setupCustomCursorHoverEffect(customCursor) {
+  const navBarButtons = document.querySelectorAll(".navbar-buttons > div"),
+    links = document.querySelectorAll("a:not(.jewellery-products-section .product)"),
     newsletterSignUpButton = document.querySelector("form > button");
 
   for (const button of navBarButtons) {
     button.addEventListener("mouseover", () => {
-      customCursor.classList.add("cursor-grows");
+      growCursor(customCursor);
     });
 
     button.addEventListener("mouseleave", () => {
-      customCursor.classList.remove("cursor-grows");
+      normalizeCursor(customCursor);
     });
   }
 
   for (const link of Array.from(links)) {
     link.addEventListener("mouseover", () => {
-      customCursor.classList.add("cursor-grows");
+      growCursor(customCursor);
     });
 
     link.addEventListener("mouseleave", () => {
-      customCursor.classList.remove("cursor-grows");
-    });
-  }
-
-  for (const button of carouselNavigationButtons) {
-    button.addEventListener("mouseover", () => {
-      customCursor.classList.add("cursor-grows");
-    });
-
-    button.addEventListener("mouseleave", () => {
-      customCursor.classList.remove("cursor-grows");
+      normalizeCursor(customCursor);
     });
   }
 
   newsletterSignUpButton.addEventListener("mouseover", () => {
-    customCursor.classList.add("cursor-grows");
+    growCursor(customCursor);
   });
 
   newsletterSignUpButton.addEventListener("mouseleave", () => {
-    customCursor.classList.remove("cursor-grows");
+    normalizeCursor(customCursor);
   });
 }
 
-setupCustomCursorHoverEffect();
+setupCustomCursorHoverEffect(document.querySelector(".custom-cursor"));

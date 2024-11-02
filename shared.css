@@ -48,12 +48,15 @@
   border: 1px solid var(--alternate-text-color);
   background-color: #808080;
   position: fixed;
-  z-index: 3;
-  transform: translate(-40%, -20%);
-  transform-origin: 100% 100%;
+  z-index: 4;
   pointer-events: none;
-  transition: 0.3s ease;
-  transition-property: transform, background-color;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.cursor-shrinks {
+  transform: scale(0.9);
+  border-width: 2px;
+  background-color: #80808080;
 }
 
 .cursor-grows {
@@ -61,10 +64,17 @@
   background-color: #80808080;
 }
 
+body,
+.enter-email button[type="submit"],
+button,
+a,
+label {
+  cursor: none;
+}
+
 body {
   background-color: var(--site-background);
   min-height: 100vh;
-  cursor: none;
 }
 
 nav,
@@ -87,7 +97,7 @@ header,
 .logo,
 .navbar-buttons,
 hr {
-  z-index: 2;
+  z-index: 3;
 }
 
 nav {
@@ -239,7 +249,6 @@ hr.slide-out {
 a {
   text-decoration: none;
   color: var(--site-accent);
-  cursor: none;
 }
 
 .general-links a,
@@ -376,7 +385,6 @@ h1 {
 .enter-email button[type="submit"] {
   border: none;
   flex-basis: 15%;
-  cursor: none;
 }
 
 button[type="submit"] > span {

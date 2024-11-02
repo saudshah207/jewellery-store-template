@@ -308,3 +308,33 @@ function setupDesignerLinksHoverEffect() {
 }
 
 setupDesignerLinksHoverEffect();
+
+function growCursor(cursor) {
+  cursor.classList.add("cursor-grows");
+}
+
+function normalizeCursor(cursor) {
+  if (Array.from(cursor.classList).includes("cursor-grows")) {
+    cursor.classList.remove("cursor-grows");
+  } else {
+    cursor.classList.remove("cursor-shrinks");
+  }
+}
+
+function setupCustomCursorHoverEffect(customCursor) {
+  const carouselNavigationButtons = document.querySelectorAll(
+    ".carousel > .navigation > button"
+  );
+
+  for (const navigationButton of carouselNavigationButtons) {
+    navigationButton.addEventListener("mouseover", () => {
+      growCursor(customCursor);
+    });
+
+    navigationButton.addEventListener("mouseleave", () => {
+      normalizeCursor(customCursor);
+    });
+  }
+}
+
+setupCustomCursorHoverEffect(document.querySelector(".custom-cursor"));
