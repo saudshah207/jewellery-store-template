@@ -8,7 +8,9 @@ const customCursorMovement = (e) => {
 
   /* cursor moves by inputing coordinates with fixed positioning */
   customCursor.style.left = `${moveX - halfOfCursorWidth}px`;
-  customCursor.style.top = `${moveY + document.body.scrollTop - halfOfCursorWidth}px`;
+  customCursor.style.top = `${
+    moveY + document.body.scrollTop - halfOfCursorWidth
+  }px`;
 };
 
 window.addEventListener("mousemove", customCursorMovement);
@@ -63,37 +65,68 @@ window.addEventListener("load", function () {
   findSharedStyleSheet(document.styleSheets);
 });
 
-function setupOffCanvasMenuOpenningAnimation() {
-  const hamburgerMenuToggle = document.querySelector(".hamburger-menu-toggle");
+function toggleOffCanvasMenuOpeningAndClosing(menuToggle) {
+  const menuToggleBars = menuToggle.querySelectorAll(".bar"),
+    navBottomBorder = document.querySelector("hr"),
+    navLogo = document.querySelector(".logo"),
+    userAccountBtn = document.querySelector(".user-account-container"),
+    shoppingCartBtn = document.querySelector(".shopping-cart-container"),
+    offcanvasMenu = document.querySelector(".offcanvas-menu-list");
 
-  hamburgerMenuToggle.addEventListener("click", () => {
-    tranformToCloseButton(document.querySelectorAll(".bar"));
+  tranformToCloseButton(menuToggleBars);
 
-    fadeOutHeaderElements(
-      document.querySelector("hr"),
-      document.querySelector(".logo"),
-      document.querySelector(".user-account-container"),
-      document.querySelector(".shopping-cart-container")
-    );
+  fadeOutHeaderElements(
+    navBottomBorder,
+    navLogo,
+    userAccountBtn,
+    shoppingCartBtn
+  );
 
-    fadeInOffCanvasMenuItems(
-      document.querySelectorAll(".offcanvas-menu-list li")
-    );
+  toggleOffCanvasMenuItemsFadeIn(offcanvasMenu.querySelectorAll("li"));
 
-    slideOffCanvasMenuInAndOut(document.querySelector(".offcanvas-menu-list"));
+  toggleOffCanvasMenuSlideIn(offcanvasMenu);
 
-    setTimeout(
-      fadeInHeaderElements,
-      1000,
-      document.querySelector("hr"),
-      document.querySelector(".logo"),
-      document.querySelector(".user-account-container"),
-      document.querySelector(".shopping-cart-container")
-    );
+  toggleOffCanvasMenuItemsTabFocus(
+    offcanvasMenu,
+    offcanvasMenu.querySelectorAll("a")
+  );
+
+  setTimeout(
+    fadeInHeaderElements,
+    1000,
+    navBottomBorder,
+    navLogo,
+    userAccountBtn,
+    shoppingCartBtn
+  );
+}
+
+function enableClosingOffCanvasMenuWithEscKey(offCanvasMenu) {
+  window.addEventListener("keyup", function (event) {
+    if (
+      Array.from(offCanvasMenu.classList).includes("slides-in") &&
+      event.key === "Escape"
+    ) {
+      toggleOffCanvasMenuOpeningAndClosing(
+        document.querySelector(".hamburger-menu-toggle")
+      );
+    }
   });
 }
 
-setupOffCanvasMenuOpenningAnimation();
+function setupOffCanvasMenuOpeningAndClosing(hamburgerMenuToggle) {
+  hamburgerMenuToggle.addEventListener("click", () => {
+    toggleOffCanvasMenuOpeningAndClosing(hamburgerMenuToggle);
+  });
+
+  enableClosingOffCanvasMenuWithEscKey(
+    document.querySelector(".offcanvas-menu-list")
+  );
+}
+
+setupOffCanvasMenuOpeningAndClosing(
+  document.querySelector(".hamburger-menu-toggle")
+);
 
 function tranformToCloseButton(menuToggleBars) {
   Array.from(menuToggleBars).forEach((menuBar, index) => {
@@ -123,14 +156,26 @@ function fadeInHeaderElements(navBottomBorder, ...otherHeaderElements) {
   }
 }
 
-function fadeInOffCanvasMenuItems(menuItems) {
+function toggleOffCanvasMenuItemsFadeIn(menuItems) {
   Array.from(menuItems).forEach((Item) => {
     Item.classList.toggle("fade-in");
   });
 }
 
-function slideOffCanvasMenuInAndOut(menu) {
+function toggleOffCanvasMenuSlideIn(menu) {
   menu.classList.toggle("slides-in");
+}
+
+function toggleOffCanvasMenuItemsTabFocus(offcanvasMenu, menuLinks) {
+  if (Array.from(offcanvasMenu.classList).includes("slides-in")) {
+    for (const link of menuLinks) {
+      link.setAttribute("tabindex", "0");
+    }
+  } else {
+    for (const link of menuLinks) {
+      link.setAttribute("tabindex", "-1");
+    }
+  }
 }
 
 function growCursor(cursor) {
@@ -146,8 +191,10 @@ function normalizeCursor(cursor) {
 }
 
 function setupCustomCursorHoverEffect(customCursor) {
-  const navBarButtons = document.querySelectorAll(".navbar-buttons > div"),
-    links = document.querySelectorAll("a:not(.jewellery-products-section .product)"),
+  const navBarButtons = document.querySelectorAll(".navbar-buttons > button"),
+    links = document.querySelectorAll(
+      "a:not(.jewellery-products-section .product)"
+    ),
     newsletterSignUpButton = document.querySelector("form > button");
 
   for (const button of navBarButtons) {

@@ -28,6 +28,13 @@ main {
   list-style: none;
 }
 
+.filters-toggle,
+.filters .close-button,
+.filter-dropdown > button,
+.add-to-wishlist {
+  background-color: transparent;
+}
+
 .jewellery-products-section {
   grid-template-columns: 1fr 1fr 2fr;
   grid-template-rows: repeat(2, auto) max-content;
@@ -100,7 +107,6 @@ main {
 .filters-toggle {
   display: none;
   gap: 0.25rem;
-  background-color: transparent;
   border: none;
 }
 
@@ -128,7 +134,6 @@ main {
   right: 1rem;
   top: 1rem;
   padding: 0.25rem;
-  background: transparent;
   border: 1px solid var(--site-accent);
   border-radius: 50%;
 }
@@ -138,7 +143,6 @@ main {
 }
 
 .filter-dropdown > button {
-  background: transparent;
   border: none;
   align-items: center;
   column-gap: 0.25rem;
@@ -231,10 +235,11 @@ main {
   border: 1px solid var(--site-accent);
   border-radius: 50%;
   padding: 0.25rem;
-  position: absolute;
+  position: absolute; 
   top: 1rem;
   right: 1rem;
   transition: transform 200ms ease;
+  outline-offset: 5px;
 }
 
 .product .add-to-wishlist:hover {
@@ -254,6 +259,10 @@ main {
 }
 
 @media only screen and (max-width: 1024px) {
+  :root {
+    --offcanvas-filters-width: 40vw;
+  }
+
   .overlay {
     --nav-border-height: 1px;
     --timing-function: ease;
@@ -262,11 +271,10 @@ main {
     background: rgba(0, 0, 0, 0.2);
     height: 100vh;
     position: fixed;
-    left: 40vw;
+    left: var(--offcanvas-filters-width);
     width: 100vw;
     z-index: 2;
     backdrop-filter: blur(2.5px);
-    top: calc(var(--nav-height) + var(--nav-border-height));
   }
 
   .overlay.fade-in {
@@ -301,7 +309,7 @@ main {
     left: -40vw;
     top: var(--nav-height);
     min-height: 100vh;
-    width: 40vw;
+    width: var(--offcanvas-filters-width);
     padding: 2rem;
     transition: left 500ms ease;
   }
@@ -321,8 +329,12 @@ main {
 }
 
 @media only screen and (max-width: 768px) {
+  :root {
+    --offcanvas-filters-width: 45vw;
+  }
+
   .overlay {
-    left: 45vw;
+    left: var(--offcanvas-filters-width);
   }
 
   .main-banner-section,
@@ -347,8 +359,8 @@ main {
   }
 
   .filters {
-    left: -45vw;
-    width: 45vw;
+    left: calc(-1 * var(--offcanvas-filters-width));
+    width: var(--offcanvas-filters-width);
   }
 
   .products-grid {

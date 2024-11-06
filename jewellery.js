@@ -1,23 +1,40 @@
-function closeAlreadyExpandedOptions(optionsToExpand) {
-  const filters = optionsToExpand.parentElement.parentElement;
+function toggleItemsTabFocus(itemsContainer, items, className) {
+  if (Array.from(itemsContainer.classList).includes(className)) {
+    for (const item of items) {
+      item.setAttribute("tabindex", "0");
+    }
+  } else {
+    for (const item of items) {
+      item.setAttribute("tabindex", "-1");
+    }
+  }
+}
 
-  let currentFilterOptions;
+function closeAlreadyExpandedOptionsContainer(optionsContainerToExpand) {
+  const filters = optionsContainerToExpand
+    ? optionsContainerToExpand.parentElement.parentElement
+    : document.querySelector(".filters");
+
+  let currentFilterOptionsContainer;
 
   for (const filtersChild of filters.children) {
-    currentFilterOptions = filtersChild.querySelector(".options");
+    currentFilterOptionsContainer = filtersChild.querySelector(".options");
 
-    if (!currentFilterOptions) {
+    if (!currentFilterOptionsContainer) {
       continue;
     }
 
-    if (currentFilterOptions !== optionsToExpand) {
-      if (Array.from(currentFilterOptions.classList).includes("expand")) {
-        toggleOptionsExpandClass(currentFilterOptions);
-        animateExpanderBtnIcon(
-          currentFilterOptions.previousElementSibling.querySelector("svg")
+    if (currentFilterOptionsContainer !== optionsContainerToExpand) {
+      if (
+        Array.from(currentFilterOptionsContainer.classList).includes("expand")
+      ) {
+        toggleFilterOptionsExpansion(
+          currentFilterOptionsContainer,
+          currentFilterOptionsContainer.previousElementSibling.querySelector(
+            "svg"
+          ),
+          false
         );
-        toggleTransitionClass(currentFilterOptions, "expanding");
-        toggleTransitionClass(currentFilterOptions, "closing");
       }
     }
   }
@@ -35,20 +52,33 @@ function animateExpanderBtnIcon(icon) {
   icon.classList.toggle("transform");
 }
 
-function expandFilterOptions(options, expanderBtnIcon) {
-  closeAlreadyExpandedOptions(options);
+function toggleFilterOptionsExpansion(
+  optionsContainer,
+  expanderBtnIcon,
+  alreadyExpandedOptions
+) {
+  if (alreadyExpandedOptions) {
+    closeAlreadyExpandedOptionsContainer(optionsContainer);
+  }
+
   animateExpanderBtnIcon(expanderBtnIcon);
-  toggleOptionsExpandClass(options);
-  toggleTransitionClass(options, "expanding");
-  toggleTransitionClass(options, "closing");
+  toggleOptionsExpandClass(optionsContainer);
+  toggleTransitionClass(optionsContainer, "expanding");
+  toggleTransitionClass(optionsContainer, "closing");
+  toggleItemsTabFocus(
+    optionsContainer,
+    optionsContainer.querySelectorAll("input"),
+    "expand"
+  );
 }
 
 function setupFilterOptionsExpansion(filterExpanderBtns) {
   for (const expanderBtn of filterExpanderBtns) {
     expanderBtn.addEventListener("click", function () {
-      expandFilterOptions(
+      toggleFilterOptionsExpansion(
         expanderBtn.nextElementSibling,
-        expanderBtn.querySelector("svg")
+        expanderBtn.querySelector("svg"),
+        true
       );
     });
   }
@@ -58,6 +88,50 @@ setupFilterOptionsExpansion(
   document.querySelectorAll(".filter-dropdown > button")
 );
 
+function configureFilterBtnsTabFocus(
+  viewportWidth,
+  filtersContainer,
+  filterBtns
+) {
+  if (viewportWidth < 1025) {
+    toggleItemsTabFocus(filtersContainer, filterBtns, "slide-in");
+  } else {
+    if (!Array.from(filtersContainer.classList).includes("slide-in")) {
+      for (const filterBtn of filterBtns) {
+        filterBtn.setAttribute("tabindex", "0");
+      }
+    }
+  }
+}
+
+window.addEventListener("resize", function () {
+  configureFilterBtnsTabFocus(
+    document.documentElement.clientWidth,
+    document.querySelector(".filters"),
+    document.querySelectorAll(".filters button")
+  );
+});
+
+window.addEventListener("load", function () {
+  configureFilterBtnsTabFocus(
+    document.documentElement.clientWidth,
+    document.querySelector(".filters"),
+    document.querySelectorAll(".filters button")
+  );
+});
+
+function enableClosingOffCanvasFiltersWithEscKey(filters) {
+  window.addEventListener("keyup", function (event) {
+    if (
+      Array.from(filters.classList).includes("slide-in") &&
+      event.key === "Escape"
+    ) {
+      hideFilters(filters, document.querySelector(".overlay"));
+      closeAlreadyExpandedOptionsContainer(null);
+    }
+  });
+}
+
 function toggleFiltersSlideInClass(filters) {
   filters.classList.toggle("slide-in");
 }
@@ -66,18 +140,29 @@ function toggleOverlayFadeInClass(overlay) {
   overlay.classList.toggle("fade-in");
 }
 
-function hideFilters(filters, overlay) {
-  toggleFiltersSlideInClass(filters);
+function hideFilters(filtersContainer, overlay) {
+  toggleFiltersSlideInClass(filtersContainer);
   toggleOverlayFadeInClass(overlay);
   toggleTransitionClass(overlay, "fade-in");
   toggleTransitionClass(overlay, "fade-out");
+  toggleItemsTabFocus(
+    filtersContainer,
+    filtersContainer.querySelectorAll("button"),
+    "slide-in"
+  );
+  closeAlreadyExpandedOptionsContainer(null);
 }
 
-function showFilters(filters, overlay) {
-  toggleFiltersSlideInClass(filters);
+function showFilters(filtersContainer, overlay) {
+  toggleFiltersSlideInClass(filtersContainer);
   toggleOverlayFadeInClass(overlay);
   toggleTransitionClass(overlay, "fade-out");
   toggleTransitionClass(overlay, "fade-in");
+  toggleItemsTabFocus(
+    filtersContainer,
+    filtersContainer.querySelectorAll("button"),
+    "slide-in"
+  );
 }
 
 function setupFiltersToggling(filtersToggle, filtersCloseBtn, overlay) {
@@ -92,6 +177,8 @@ function setupFiltersToggling(filtersToggle, filtersCloseBtn, overlay) {
   overlay.addEventListener("click", function () {
     hideFilters(document.querySelector(".filters"), overlay);
   });
+
+  enableClosingOffCanvasFiltersWithEscKey(document.querySelector(".filters"));
 }
 
 setupFiltersToggling(
