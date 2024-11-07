@@ -113,7 +113,7 @@ nav {
 
 .navbar-buttons {
   align-items: center;
-  gap: 0.8rem;
+  gap: 0.25rem;
 }
 
 hr {
@@ -138,12 +138,6 @@ hr.slide-out {
 .hamburger-menu-toggle {
   background-color: transparent;
   border: none;
-}
-
-.navbar-buttons > .user-account-container,
-.navbar-buttons > .shopping-cart-container {
-  min-width: 30px;
-  height: 30px;
 }
 
 .hamburger-menu-toggle {
@@ -487,6 +481,16 @@ button[type="submit"] > span {
     height: 19px;
   }
 
+  .user-account-container svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .shopping-cart-container svg {
+    width: 26px;
+    height: 26px;
+  }
+
   .newsletter-and-links {
     justify-content: normal;
     row-gap: 1.25rem;
@@ -510,6 +514,16 @@ button[type="submit"] > span {
   .hamburger-menu-toggle {
     width: 22px;
     height: 18px;
+  }
+
+  .user-account-container svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .shopping-cart-container svg {
+    width: 24px;
+    height: 24px;
   }
 
   .bar:first-child.for-first-bar {
