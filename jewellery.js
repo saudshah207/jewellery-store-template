@@ -1,15 +1,3 @@
-function toggleItemsTabFocus(itemsContainer, items, className) {
-  if (Array.from(itemsContainer.classList).includes(className)) {
-    for (const item of items) {
-      item.setAttribute("tabindex", "0");
-    }
-  } else {
-    for (const item of items) {
-      item.setAttribute("tabindex", "-1");
-    }
-  }
-}
-
 function closeAlreadyExpandedOptionsContainer(optionsContainerToExpand) {
   const filters = optionsContainerToExpand
     ? optionsContainerToExpand.parentElement.parentElement
@@ -132,6 +120,50 @@ function enableClosingOffCanvasFiltersWithEscKey(filters) {
   });
 }
 
+function handleTargetForFilters(event, target, elements) {
+  const lastFilterBtn = elements[0],
+    firstFilterBtn = elements[1],
+    lastHeaderElement = elements[2];
+
+  const lastSelectableOption =
+    lastFilterBtn.nextElementSibling.children[
+      lastFilterBtn.nextElementSibling.children.length - 1
+    ].querySelector("input");
+
+  switch (target) {
+    case lastFilterBtn:
+      const optionsExpanded = Array.from(
+        target.nextElementSibling.classList
+      ).includes("expand");
+
+      if (!optionsExpanded) {
+        focusElement(event, firstFilterBtn);
+      }
+      break;
+
+    case lastSelectableOption:
+      focusElement(event, firstFilterBtn);
+      break;
+
+    case lastHeaderElement:
+      focusElement(event, firstFilterBtn);
+  }
+}
+
+function limitTabNavigationInFilters(filters) {
+  headerElements = Array.from(
+    document.querySelectorAll(".navbar-buttons > button")
+  );
+  headerElements.unshift(document.querySelector("nav > .logo"));
+
+  limitTabNavigationScopeWithinModal(
+    filters,
+    headerElements,
+    filters.querySelectorAll("button"),
+    "slide-in"
+  );
+}
+
 function toggleFiltersSlideInClass(filters) {
   filters.classList.toggle("slide-in");
 }
@@ -163,6 +195,7 @@ function showFilters(filtersContainer, overlay) {
     filtersContainer.querySelectorAll("button"),
     "slide-in"
   );
+  limitTabNavigationInFilters(filtersContainer);
 }
 
 function setupFiltersToggling(filtersToggle, filtersCloseBtn, overlay) {

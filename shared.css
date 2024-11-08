@@ -187,7 +187,7 @@ hr.slide-out {
   transition: 0.7s ease-in-out;
 }
 
-.offcanvas-menu-list.slides-in {
+.offcanvas-menu-list.slide-in {
   top: var(--nav-height);
 }
 
