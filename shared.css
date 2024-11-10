@@ -93,10 +93,23 @@ header {
   top: 0;
 }
 
+header::after {
+  content: "";
+  display: inherit;
+  height: 1.5px;
+  width: 100%;
+  background-color: var(--site-accent);
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+header.slide-out-bottom-border::after {
+  transform: scaleX(0);
+}
+
 header,
 .logo,
-.navbar-buttons,
-hr {
+.navbar-buttons {
   z-index: 3;
 }
 
@@ -116,16 +129,10 @@ nav {
   gap: 0.25rem;
 }
 
-hr {
-  position: fixed;
-  width: 100%;
-  border-color: var(--site-accent);
-}
-
 .logo,
 .navbar-buttons > .user-account-container,
 .navbar-buttons > .shopping-cart-container,
-hr {
+header::after {
   transition: 0.3s ease-in-out;
 }
 

@@ -146,7 +146,7 @@ function limitTabNavigationScopeWithinModal(
 
 function toggleOffCanvasMenu(menuToggle) {
   const menuToggleBars = menuToggle.querySelectorAll(".bar"),
-    navBottomBorder = document.querySelector("hr"),
+    header = document.querySelector("header"),
     navLogo = document.querySelector(".logo"),
     userAccountBtn = document.querySelector(".user-account-container"),
     shoppingCartBtn = document.querySelector(".shopping-cart-container"),
@@ -155,7 +155,7 @@ function toggleOffCanvasMenu(menuToggle) {
   tranformToCloseButton(menuToggleBars);
 
   fadeOutHeaderElements(
-    navBottomBorder,
+    header,
     navLogo,
     userAccountBtn,
     shoppingCartBtn
@@ -174,7 +174,7 @@ function toggleOffCanvasMenu(menuToggle) {
   setTimeout(
     fadeInHeaderElements,
     1000,
-    navBottomBorder,
+    header,
     navLogo,
     userAccountBtn,
     shoppingCartBtn
@@ -225,16 +225,16 @@ function tranformToCloseButton(menuToggleBars) {
   });
 }
 
-function fadeOutHeaderElements(navBottomBorder, ...otherHeaderElements) {
-  navBottomBorder.classList.add("slide-out");
+function fadeOutHeaderElements(header, ...otherHeaderElements) {
+  header.classList.add("slide-out-bottom-border");
 
   for (const element of otherHeaderElements) {
     element.classList.add("fade-out");
   }
 }
 
-function fadeInHeaderElements(navBottomBorder, ...otherHeaderElements) {
-  navBottomBorder.classList.remove("slide-out");
+function fadeInHeaderElements(header, ...otherHeaderElements) {
+  header.classList.remove("slide-out-bottom-border");
 
   for (const element of otherHeaderElements) {
     element.classList.remove("fade-out");
