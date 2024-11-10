@@ -3,19 +3,11 @@ function closeAlreadyExpandedOptionsContainer(optionsContainerToExpand) {
     ? optionsContainerToExpand.parentElement.parentElement
     : document.querySelector(".filters");
 
-  let currentFilterOptionsContainer;
+  const filtersOptionsContainers = filters.querySelectorAll(".options");
 
-  for (const filtersChild of filters.children) {
-    currentFilterOptionsContainer = filtersChild.querySelector(".options");
-
-    if (!currentFilterOptionsContainer) {
-      continue;
-    }
-
+  for (const currentFilterOptionsContainer of filtersOptionsContainers) {
     if (currentFilterOptionsContainer !== optionsContainerToExpand) {
-      if (
-        Array.from(currentFilterOptionsContainer.classList).includes("expand")
-      ) {
+      if (currentFilterOptionsContainer.dataset.state === "active") {
         toggleFilterOptionsExpansion(
           currentFilterOptionsContainer,
           currentFilterOptionsContainer.previousElementSibling.querySelector(
@@ -49,14 +41,14 @@ function toggleFilterOptionsExpansion(
     closeAlreadyExpandedOptionsContainer(optionsContainer);
   }
 
+  toggleElementDataState(optionsContainer, optionsContainer.dataset.state);
   animateExpanderBtnIcon(expanderBtnIcon);
   toggleOptionsExpandClass(optionsContainer);
   toggleTransitionClass(optionsContainer, "expanding");
   toggleTransitionClass(optionsContainer, "closing");
   toggleItemsTabFocus(
-    optionsContainer,
     optionsContainer.querySelectorAll("input"),
-    "expand"
+    optionsContainer.dataset.state
   );
 }
 
@@ -76,15 +68,37 @@ setupFilterOptionsExpansion(
   document.querySelectorAll(".filter-dropdown > button")
 );
 
+function configureFiltersDataState(viewportWidth, filtersContainer) {
+  if (viewportWidth < 1025) {
+    filtersContainer.setAttribute("data-state", "hidden");
+  } else {
+    filtersContainer.removeAttribute("data-state");
+  }
+}
+
+window.addEventListener("resize", function () {
+  configureFiltersDataState(
+    document.documentElement.clientWidth,
+    document.querySelector(".filters")
+  );
+});
+
+window.addEventListener("load", function () {
+  configureFiltersDataState(
+    document.documentElement.clientWidth,
+    document.querySelector(".filters")
+  );
+});
+
 function configureFilterBtnsTabFocus(
   viewportWidth,
   filtersContainer,
   filterBtns
 ) {
   if (viewportWidth < 1025) {
-    toggleItemsTabFocus(filtersContainer, filterBtns, "slide-in");
+    toggleItemsTabFocus(filterBtns, filtersContainer.dataset.state);
   } else {
-    if (!Array.from(filtersContainer.classList).includes("slide-in")) {
+    if (!filtersContainer.dataset.state) {
       for (const filterBtn of filterBtns) {
         filterBtn.setAttribute("tabindex", "0");
       }
@@ -110,10 +124,7 @@ window.addEventListener("load", function () {
 
 function enableClosingOffCanvasFiltersWithEscKey(filters) {
   window.addEventListener("keyup", function (event) {
-    if (
-      Array.from(filters.classList).includes("slide-in") &&
-      event.key === "Escape"
-    ) {
+    if (filters.dataset.state === "active" && event.key === "Escape") {
       hideFilters(filters, document.querySelector(".overlay"));
       closeAlreadyExpandedOptionsContainer(null);
     }
@@ -132,9 +143,8 @@ function handleTargetForFilters(event, target, elements) {
 
   switch (target) {
     case lastFilterBtn:
-      const optionsExpanded = Array.from(
-        target.nextElementSibling.classList
-      ).includes("expand");
+      const optionsExpanded =
+        target.nextElementSibling.dataset.state === "active";
 
       if (!optionsExpanded) {
         focusElement(event, firstFilterBtn);
@@ -151,7 +161,7 @@ function handleTargetForFilters(event, target, elements) {
 }
 
 function limitTabNavigationInFilters(filters) {
-  headerElements = Array.from(
+  let headerElements = Array.from(
     document.querySelectorAll(".navbar-buttons > button")
   );
   headerElements.unshift(document.querySelector("nav > .logo"));
@@ -160,7 +170,7 @@ function limitTabNavigationInFilters(filters) {
     filters,
     headerElements,
     filters.querySelectorAll("button"),
-    "slide-in"
+    filters.dataset.state
   );
 }
 
@@ -173,27 +183,27 @@ function toggleOverlayFadeInClass(overlay) {
 }
 
 function hideFilters(filtersContainer, overlay) {
+  toggleElementDataState(filtersContainer, filtersContainer.dataset.state);
   toggleFiltersSlideInClass(filtersContainer);
   toggleOverlayFadeInClass(overlay);
   toggleTransitionClass(overlay, "fade-in");
   toggleTransitionClass(overlay, "fade-out");
   toggleItemsTabFocus(
-    filtersContainer,
     filtersContainer.querySelectorAll("button"),
-    "slide-in"
+    filtersContainer.dataset.state
   );
   closeAlreadyExpandedOptionsContainer(null);
 }
 
 function showFilters(filtersContainer, overlay) {
+  toggleElementDataState(filtersContainer, filtersContainer.dataset.state);
   toggleFiltersSlideInClass(filtersContainer);
   toggleOverlayFadeInClass(overlay);
   toggleTransitionClass(overlay, "fade-out");
   toggleTransitionClass(overlay, "fade-in");
   toggleItemsTabFocus(
-    filtersContainer,
     filtersContainer.querySelectorAll("button"),
-    "slide-in"
+    filtersContainer.dataset.state
   );
   limitTabNavigationInFilters(filtersContainer);
 }
@@ -219,22 +229,6 @@ setupFiltersToggling(
   document.querySelector(".filters > .close-button"),
   document.querySelector(".overlay")
 );
-
-function growCursor(cursor) {
-  cursor.classList.add("cursor-grows");
-}
-
-function normalizeCursor(cursor) {
-  if (Array.from(cursor.classList).includes("cursor-grows")) {
-    cursor.classList.remove("cursor-grows");
-  } else {
-    cursor.classList.remove("cursor-shrinks");
-  }
-}
-
-function shrinkCursor(cursor) {
-  cursor.classList.add("cursor-shrinks");
-}
 
 function setupCustomCursorHoverEffect(customCursor) {
   const sortingSelect = document.querySelector(".sorting select"),

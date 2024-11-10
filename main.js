@@ -87,12 +87,12 @@ function handleTargetForOffCanvasMenu(event, target, elements) {
 
 function controlTabNavigationOrder(
   event,
-  modalClassList,
+  modal,
   headerElements,
   modalItems,
-  className
+  state
 ) {
-  if (Array.from(modalClassList).includes(className)) {
+  if (modal.dataset.state === state) {
     const target = event.target;
 
     const firstHeaderElement = headerElements[0],
@@ -101,9 +101,11 @@ function controlTabNavigationOrder(
       lastModalItem = modalItems[modalItems.length - 1];
 
     if (event.key === "Tab" && event.shiftKey === false) {
-      const modal = Array.from(modalClassList).includes("offcanvas-menu-list");
+      const isModalOffCanvasMenu = Array.from(modal.classList).includes(
+        "offcanvas-menu-list"
+      );
 
-      modal
+      isModalOffCanvasMenu
         ? handleTargetForOffCanvasMenu(event, target, [
             lastModalItem,
             firstModalItem,
@@ -131,15 +133,15 @@ function limitTabNavigationScopeWithinModal(
   modal,
   headerElements,
   modalItems,
-  className
+  activeState
 ) {
   window.addEventListener("keydown", function (event) {
     controlTabNavigationOrder(
       event,
-      modal.classList,
+      modal,
       headerElements,
       modalItems,
-      className
+      activeState
     );
   });
 }
@@ -154,21 +156,17 @@ function toggleOffCanvasMenu(menuToggle) {
 
   tranformToCloseButton(menuToggleBars);
 
-  fadeOutHeaderElements(
-    header,
-    navLogo,
-    userAccountBtn,
-    shoppingCartBtn
-  );
+  fadeOutHeaderElements(header, navLogo, userAccountBtn, shoppingCartBtn);
 
   toggleOffCanvasMenuItemsFadeIn(offCanvasMenu.querySelectorAll("li"));
 
   toggleOffCanvasMenuSlideIn(offCanvasMenu);
 
+  toggleElementDataState(offCanvasMenu, offCanvasMenu.dataset.state);
+
   toggleItemsTabFocus(
-    offCanvasMenu,
     offCanvasMenu.querySelectorAll("a"),
-    "slide-in"
+    offCanvasMenu.dataset.state
   );
 
   setTimeout(
@@ -184,16 +182,13 @@ function toggleOffCanvasMenu(menuToggle) {
     offCanvasMenu,
     [navLogo, userAccountBtn, shoppingCartBtn, menuToggle],
     offCanvasMenu.querySelectorAll("a"),
-    "slide-in"
+    offCanvasMenu.dataset.state
   );
 }
 
 function enableClosingOffCanvasMenuWithEscKey(offCanvasMenu) {
   window.addEventListener("keyup", function (event) {
-    if (
-      Array.from(offCanvasMenu.classList).includes("slide-in") &&
-      event.key === "Escape"
-    ) {
+    if (offCanvasMenu.dataset.state === "active" && event.key === "Escape") {
       toggleOffCanvasMenu(document.querySelector(".hamburger-menu-toggle"));
     }
   });
@@ -251,15 +246,17 @@ function toggleOffCanvasMenuSlideIn(menu) {
   menu.classList.toggle("slide-in");
 }
 
-function toggleItemsTabFocus(itemsContainer, items, className) {
-  const containerContainsClassName = Array.from(
-      itemsContainer.classList
-    ).includes(className),
-    value = containerContainsClassName ? "0" : "-1";
+function toggleItemsTabFocus(items, state) {
+  const isDataStateActive = state === "active",
+    value = isDataStateActive ? "0" : "-1";
 
   for (const item of items) {
     item.setAttribute("tabindex", value);
   }
+}
+
+function toggleElementDataState(element, state) {
+  element.dataset.state = state === "active" ? "hidden" : "active";
 }
 
 function growCursor(cursor) {
@@ -272,6 +269,10 @@ function normalizeCursor(cursor) {
   } else {
     cursor.classList.remove("cursor-shrinks");
   }
+}
+
+function shrinkCursor(cursor) {
+  cursor.classList.add("cursor-shrinks");
 }
 
 function setupCustomCursorHoverEffect(customCursor) {
