@@ -315,7 +315,7 @@ function setupCustomCursorHoverEffect(customCursor) {
   );
 
   for (const navigationButton of carouselNavigationButtons) {
-    navigationButton.addEventListener("mouseover", () => {
+    navigationButton.addEventListener("mouseenter", () => {
       growCursor(customCursor);
     });
 

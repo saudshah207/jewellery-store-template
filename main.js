@@ -283,7 +283,7 @@ function setupCustomCursorHoverEffect(customCursor) {
     newsletterSignUpButton = document.querySelector("form > button");
 
   for (const button of navBarButtons) {
-    button.addEventListener("mouseover", () => {
+    button.addEventListener("mouseenter", () => {
       growCursor(customCursor);
     });
 
@@ -293,7 +293,7 @@ function setupCustomCursorHoverEffect(customCursor) {
   }
 
   for (const link of Array.from(links)) {
-    link.addEventListener("mouseover", () => {
+    link.addEventListener("mouseenter", () => {
       growCursor(customCursor);
     });
 
@@ -302,7 +302,7 @@ function setupCustomCursorHoverEffect(customCursor) {
     });
   }
 
-  newsletterSignUpButton.addEventListener("mouseover", () => {
+  newsletterSignUpButton.addEventListener("mouseenter", () => {
     growCursor(customCursor);
   });
 

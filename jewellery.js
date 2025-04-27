@@ -243,11 +243,11 @@ function setupCustomCursorHoverEffect(customCursor) {
 
   for (const each of [sortingSelect, filtersToggle, filtersCloseBtn]) {
     if (each === filtersCloseBtn) {
-      each.addEventListener("mouseover", () => {
+      each.addEventListener("mouseenter", () => {
         shrinkCursor(customCursor);
       });
     } else {
-      each.addEventListener("mouseover", () => {
+      each.addEventListener("mouseenter", () => {
         growCursor(customCursor);
       });
     }
@@ -258,7 +258,7 @@ function setupCustomCursorHoverEffect(customCursor) {
   }
 
   for (const expanderBtn of filterExpanderBtns) {
-    expanderBtn.addEventListener("mouseover", () => {
+    expanderBtn.addEventListener("mouseenter", () => {
       shrinkCursor(customCursor);
     });
 
@@ -268,7 +268,7 @@ function setupCustomCursorHoverEffect(customCursor) {
   }
 
   for (const option of filterOptions) {
-    option.addEventListener("mouseover", () => {
+    option.addEventListener("mouseenter", () => {
       shrinkCursor(customCursor);
     });
 
@@ -278,8 +278,9 @@ function setupCustomCursorHoverEffect(customCursor) {
   }
 
   for (const product of products) {
-    product.addEventListener("mouseover", () => {
+    product.addEventListener("mouseenter", () => {
       growCursor(customCursor);
+      console.log("product");
     });
 
     product.addEventListener("mouseleave", () => {
@@ -288,17 +289,14 @@ function setupCustomCursorHoverEffect(customCursor) {
   }
 
   for (const addToWishlistIcon of productAddToWishlistIcons) {
-    addToWishlistIcon.addEventListener("mouseover", (e) => {
-      e.stopPropagation(); /* Avoid bubbling up of event to product 
-                              which calls growCursor */
+    addToWishlistIcon.addEventListener("mouseenter", () => {
+      normalizeCursor(customCursor);
+      /* because normalizeCursor isn't called 
+        while "mouseenter" takes place for addToWishlistIcon
+        since "mouseleave" hasn't taken place on product 
+        (addToWishlistIcon is child of product) */
 
-      normalizeCursor(
-        customCursor
-      ); /* because product normalizeCursor isn't called 
-            while "mouseover" takes place for addToWishlistIcon
-            since "mouseleave" hasn't taken place on product 
-            (addToWishlistIcon is child of product, "mouseover"
-            on product is still taking place) */
+      console.log("wishlist-icon");
 
       shrinkCursor(customCursor);
     });
